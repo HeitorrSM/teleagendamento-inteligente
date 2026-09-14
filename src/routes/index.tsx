@@ -1,4 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  CalendarDays,
+  CheckCircle2,
+  MessageSquare,
+  RefreshCw,
+  LayoutDashboard,
+  LineChart,
+  ArrowRight,
+} from "lucide-react";
+import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
+import { DashboardPreview } from "@/components/DashboardPreview";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -7,16 +18,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Plataforma digital que automatiza o agendamento de consultas: agendamento online, confirmação automática, lembretes via WhatsApp e SMS, cancelamento, reagendamento, painel para gestores e relatórios em tempo real.",
+          "Automatize seus agendamentos, reduza faltas e ofereça uma experiência mais simples para seus pacientes com a TeleSaúde.",
       },
-      {
-        property: "og:title",
-        content: "TeleSaúde — A Central Inteligente de Teleagendamento",
-      },
+      { property: "og:title", content: "TeleSaúde — A Central Inteligente de Teleagendamento" },
       {
         property: "og:description",
         content:
-          "Automatize o agendamento, a confirmação e os lembretes de consultas com a TeleSaúde. Painel para gestores e relatórios em tempo real.",
+          "Agendamento online, confirmação automática, lembretes por WhatsApp/SMS e painel para gestores.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -25,228 +33,150 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const features = [
+  { icon: CalendarDays, emoji: "📅", title: "Agendamento online", text: "Pacientes marcam consultas 24/7, sem ligações e sem filas." },
+  { icon: CheckCircle2, emoji: "✅", title: "Confirmação automática", text: "Cada consulta é confirmada na hora, com registro completo." },
+  { icon: MessageSquare, emoji: "💬", title: "Lembretes WhatsApp/SMS", text: "Mensagens automáticas antes da consulta reduzem faltas." },
+  { icon: RefreshCw, emoji: "🔄", title: "Cancelamento e reagendamento", text: "O paciente resolve sozinho, a agenda se reorganiza." },
+  { icon: LayoutDashboard, emoji: "📊", title: "Painel para gestores", text: "Visão clara de hoje, da semana e de cada profissional." },
+  { icon: LineChart, emoji: "📈", title: "Relatórios em tempo real", text: "Acompanhe volume, confirmações e cancelamentos ao vivo." },
+];
+
+const steps = [
+  { n: "1", title: "Paciente escolhe o serviço", text: "Seleciona a especialidade desejada." },
+  { n: "2", title: "Escolhe profissional, data e horário", text: "Vê a agenda real disponível." },
+  { n: "3", title: "Confirma a consulta", text: "Recebe a confirmação imediata na tela." },
+  { n: "4", title: "Recebe lembretes automáticos", text: "WhatsApp e SMS antes do atendimento." },
+];
+
 function Index() {
   return (
-    <div className="min-h-screen bg-background font-sans text-emerald-50 antialiased">
-      <div className="mx-auto max-w-7xl px-5 py-5">
-        <Header />
-        <Hero />
-        <StatsRow />
-      </div>
-    </div>
-  );
-}
+    <div className="min-h-screen bg-background">
+      <SiteHeader />
 
-function Header() {
-  return (
-    <header className="flex items-center justify-between rounded-xl px-2 py-1">
-      <div className="flex items-center gap-3">
-        <div
-          className="grid size-10 place-items-center rounded-lg bg-emerald/25 glow-emerald"
-          style={{ boxShadow: "0 0 28px -4px #12b886" }}
-        >
-          <span className="font-display text-lg font-semibold text-emerald">T</span>
-        </div>
-        <div className="leading-tight">
-          <p className="font-display text-lg font-semibold tracking-tight text-emerald-50">
-            TeleSaúde
-          </p>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-300/50">
-            Central de Teleagendamento
-          </p>
-        </div>
-      </div>
-      <nav className="hidden items-center gap-7 text-sm text-emerald-100/70 md:flex">
-        <a href="#" className="transition hover:text-emerald-200">
-          Painel
-        </a>
-        <a href="#" className="transition hover:text-emerald-200">
-          Agendamentos
-        </a>
-        <a href="#" className="transition hover:text-emerald-200">
-          Relatórios
-        </a>
-        <a
-          href="#"
-          className="rounded-lg bg-emerald/20 px-4 py-2 font-medium text-emerald-50 ring-1 ring-emerald/40"
-          style={{ boxShadow: "0 0 22px -8px #12b886" }}
-        >
-          Entrar
-        </a>
-      </nav>
-    </header>
-  );
-}
-
-function Hero() {
-  return (
-    <section className="mt-7 grid gap-4 lg:grid-cols-12">
-      <HeroMain />
-      <RemindersCard />
-    </section>
-  );
-}
-
-function HeroMain() {
-  return (
-    <div
-      className="lg:col-span-8 rounded-2xl border border-cobalt/40 bg-gradient-to-br from-cobalt/30 via-cobalt/10 to-transparent p-8"
-      style={{
-        boxShadow: "0 0 60px -22px #2563eb inset, 0 0 40px -30px #2563eb",
-      }}
-    >
-      <p className="font-mono text-xs uppercase tracking-[0.25em] text-cobalt-200/70">
-        Agendamento inteligente
-      </p>
-      <h1 className="mt-4 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-emerald-50 md:text-6xl">
-        Agende, confirme e lembre —{" "}
-        <span className="italic text-cobalt-200">sem a menor fricção.</span>
-      </h1>
-      <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-emerald-100/70">
-        A TeleSaúde orquestra o fluxo completo da consulta em tempo real: da
-        primeira solicitação ao lembrete no WhatsApp, tudo sob luz própria.
-      </p>
-      <div className="mt-7 flex flex-wrap gap-3">
-        <a
-          href="#"
-          className="rounded-lg bg-emerald-500 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400"
-          style={{ boxShadow: "0 8px 30px -10px #12b886" }}
-        >
-          Criar teleagendamento
-        </a>
-        <a
-          href="#"
-          className="rounded-lg px-6 py-3 text-sm font-semibold text-emerald-100 ring-1 ring-emerald-100/20 transition hover:ring-emerald-100/40"
-        >
-          Ver demonstração
-        </a>
-      </div>
-      <div className="mt-8 flex flex-wrap gap-6 border-t border-emerald-100/10 pt-6">
-        <div>
-          <p className="font-display text-2xl font-semibold text-emerald-50">98,2%</p>
-          <p className="text-xs text-emerald-300/50">taxa de confirmação</p>
-        </div>
-        <div>
-          <p className="font-display text-2xl font-semibold text-emerald-50">−63%</p>
-          <p className="text-xs text-emerald-300/50">no-shows</p>
-        </div>
-        <div>
-          <p className="font-display text-2xl font-semibold text-emerald-50">24/7</p>
-          <p className="text-xs text-emerald-300/50">atendimento</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function RemindersCard() {
-  const reminders = [
-    {
-      name: "Ana Beltrão · CDM",
-      tag: "WhatsApp",
-      tagColor: "bg-emerald/20 text-emerald-200",
-      ring: "ring-amber/25",
-      time: "Amanhã · 09:40",
-      timeColor: "text-amber-200/70",
-    },
-    {
-      name: "Caio Duarte",
-      tag: "SMS",
-      tagColor: "bg-rose/20 text-rose-200",
-      ring: "ring-rose/25",
-      time: "Hoje · 14:15",
-      timeColor: "text-rose-200/70",
-    },
-    {
-      name: "Lúcia Prado",
-      tag: "Reagendada",
-      tagColor: "bg-violet/20 text-violet-200",
-      ring: "ring-emerald/25",
-      time: "Sex · 11:00",
-      timeColor: "text-emerald-300/60",
-    },
-  ];
-
-  return (
-    <div
-      className="lg:col-span-4 rounded-2xl border border-amber/40 bg-gradient-to-br from-amber/25 to-transparent p-6"
-      style={{ boxShadow: "0 0 50px -24px #f59e0b inset" }}
-    >
-      <p className="font-mono text-xs uppercase tracking-[0.22em] text-amber-200/70">
-        Lembretes ativos
-      </p>
-      <div className="mt-4 space-y-3">
-        {reminders.map((reminder) => (
-          <div
-            key={reminder.name}
-            className={`rounded-xl bg-brand/50 p-3 ring-1 ${reminder.ring}`}
-          >
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-emerald-50">{reminder.name}</p>
-              <span
-                className={`rounded-full px-2 py-0.5 font-mono text-[10px] ${reminder.tagColor}`}
-              >
-                {reminder.tag}
-              </span>
-            </div>
-            <p className={`mt-1 font-mono text-xs ${reminder.timeColor}`}>
-              {reminder.time}
+      <main>
+        <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 lg:grid-cols-2 lg:py-24">
+          <div className="rise-in">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold text-primary">
+              <span className="size-1.5 rounded-full bg-mint" /> Plataforma para clínicas e
+              profissionais de saúde
+            </span>
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">
+              A Central Inteligente de{" "}
+              <span className="text-primary">Teleagendamento</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              Automatize seus agendamentos, reduza faltas e ofereça uma experiência mais simples
+              para seus pacientes.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/agendar"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lift transition hover:bg-brand-700"
+              >
+                Começar agora <ArrowRight className="size-4" />
+              </Link>
+              <a
+                href="#funcionalidades"
+                className="inline-flex items-center rounded-xl border border-border bg-card px-6 py-3.5 text-sm font-semibold transition hover:bg-secondary"
+              >
+                Conhecer a solução
+              </a>
+            </div>
+            <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
+              {[
+                ["98,2%", "confirmações"],
+                ["−63%", "faltas"],
+                ["24/7", "agendamento"],
+              ].map(([v, l]) => (
+                <div key={l}>
+                  <dt className="font-display text-2xl font-extrabold">{v}</dt>
+                  <dd className="text-xs text-muted-foreground">{l}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-        ))}
-      </div>
+
+          <div className="rise-in">
+            <DashboardPreview />
+          </div>
+        </section>
+
+        <section id="funcionalidades" className="bg-surface py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            <h2 className="text-3xl font-extrabold sm:text-4xl">Funcionalidades</h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Tudo que a sua clínica precisa para organizar a agenda em um só lugar.
+            </p>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  className="group rounded-2xl border border-border bg-card p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-primary/40"
+                >
+                  <span className="grid size-11 place-items-center rounded-xl bg-brand-50 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
+                    <f.icon className="size-5" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-bold">
+                    <span className="mr-1">{f.emoji}</span>
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            <h2 className="text-3xl font-extrabold sm:text-4xl">Como funciona</h2>
+            <p className="mt-3 text-muted-foreground">Quatro passos, do clique ao lembrete.</p>
+            <ol className="mt-10 grid gap-4 md:grid-cols-4">
+              {steps.map((s) => (
+                <li
+                  key={s.n}
+                  className="relative rounded-2xl border border-border bg-card p-6 shadow-soft"
+                >
+                  <span className="grid size-9 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
+                    {s.n}
+                  </span>
+                  <h3 className="mt-4 text-base font-bold">{s.title}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-5 pb-4">
+          <div className="rounded-3xl bg-primary px-8 py-14 text-center text-primary-foreground shadow-lift">
+            <h2 className="text-3xl font-extrabold sm:text-4xl">
+              Experimente a plataforma agora
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-primary-foreground/80">
+              Agende uma consulta de demonstração e veja o painel do gestor atualizar em tempo
+              real.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/agendar"
+                className="rounded-xl bg-card px-6 py-3.5 text-sm font-semibold text-primary transition hover:bg-brand-50"
+              >
+                Agendar consulta
+              </Link>
+              <Link
+                to="/dashboard"
+                className="rounded-xl border border-primary-foreground/40 px-6 py-3.5 text-sm font-semibold transition hover:bg-brand-700"
+              >
+                Ver painel do gestor
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
     </div>
-  );
-}
-
-function StatsRow() {
-  const stats = [
-    {
-      value: "1.284",
-      label: "Consulta confirmada",
-      detail: "+12% esta semana",
-      detailColor: "text-emerald-300/60",
-      border: "border-emerald/40",
-      gradient: "from-emerald/25",
-      shadow: "#12b886",
-    },
-    {
-      value: "312",
-      label: "Lembretes disparados",
-      detail: "entrega 99,1%",
-      detailColor: "text-violet-200/60",
-      border: "border-violet/40",
-      gradient: "from-violet/25",
-      shadow: "#7c3aed",
-    },
-    {
-      value: "7,4%",
-      label: "Cancelamentos",
-      detail: "queda de 2,1 p.p.",
-      detailColor: "text-rose-200/60",
-      border: "border-rose/40",
-      gradient: "from-rose/25",
-      shadow: "#e11d48",
-    },
-  ];
-
-  return (
-    <section className="mt-4 grid gap-4 md:grid-cols-3">
-      {stats.map((stat) => (
-        <div
-          key={stat.label}
-          className={`rounded-2xl border ${stat.border} bg-gradient-to-br ${stat.gradient} to-transparent p-6`}
-          style={{ boxShadow: `0 0 44px -22px ${stat.shadow} inset` }}
-        >
-          <p className="font-display text-3xl font-semibold text-emerald-50">
-            {stat.value}
-          </p>
-          <p className="mt-1 text-sm text-emerald-100/70">{stat.label}</p>
-          <p className={`mt-3 font-mono text-xs ${stat.detailColor}`}>
-            {stat.detail}
-          </p>
-        </div>
-      ))}
-    </section>
   );
 }
