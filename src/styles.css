@@ -5,12 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition — TeleSaúde "Jewel-Lit Stained Glass".
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root block defines the actual color values. All colors use oklch.
+ * TeleSaúde — modern health-tech SaaS design system.
+ * Blue primary, green accent, generous white space.
  */
 
 @theme inline {
@@ -19,8 +15,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-3xl: calc(var(--radius) + 16px);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -41,67 +36,62 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
 
-  --color-brand: var(--brand);
-  --color-panel: var(--panel);
-  --color-emerald: var(--emerald);
-  --color-emerald-foreground: var(--emerald-foreground);
-  --color-cobalt: var(--cobalt);
-  --color-cobalt-foreground: var(--cobalt-foreground);
-  --color-amber: var(--amber);
-  --color-amber-foreground: var(--amber-foreground);
-  --color-rose: var(--rose);
-  --color-rose-foreground: var(--rose-foreground);
-  --color-violet: var(--violet);
-  --color-violet-foreground: var(--violet-foreground);
+  --color-surface: var(--surface);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-mint: var(--mint);
+  --color-mint-soft: var(--mint-soft);
+  --color-warning: var(--warning);
 
   --font-sans: var(--font-sans-family);
   --font-display: var(--font-display-family);
-  --font-mono: var(--font-mono-family);
+
+  --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.04), 0 12px 32px -12px rgb(15 23 42 / 0.12);
+  --shadow-lift: 0 24px 60px -24px rgb(37 99 235 / 0.35);
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.875rem;
 
-  --font-sans-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-display-family: "Fraunces", ui-serif, Georgia, serif;
-  --font-mono-family: "Space Mono", ui-monospace, monospace;
+  --font-sans-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display-family: "Plus Jakarta Sans", "Inter", ui-sans-serif, sans-serif;
 
-  /* Brand palette — dark jewel-lit mode as the default */
-  --brand: #0b1f1a;
-  --panel: #10332b;
+  --background: oklch(0.99 0.004 250);
+  --foreground: oklch(0.24 0.03 255);
+  --surface: oklch(0.97 0.01 250);
 
-  --emerald: #12b886;
-  --emerald-foreground: #042a20;
-  --cobalt: #2563eb;
-  --cobalt-foreground: #ffffff;
-  --amber: #f59e0b;
-  --amber-foreground: #3f2205;
-  --rose: #e11d48;
-  --rose-foreground: #ffffff;
-  --violet: #7c3aed;
-  --violet-foreground: #ffffff;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.03 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.03 255);
 
-  --background: #0b1f1a;
-  --foreground: oklch(0.95 0.02 170);
-  --card: #10332b;
-  --card-foreground: oklch(0.95 0.02 170);
-  --popover: #10332b;
-  --popover-foreground: oklch(0.95 0.02 170);
-  --primary: #12b886;
-  --primary-foreground: #042a20;
-  --secondary: oklch(0.22 0.04 170);
-  --secondary-foreground: oklch(0.95 0.02 170);
-  --muted: oklch(0.22 0.04 170);
-  --muted-foreground: oklch(0.65 0.04 170);
-  --accent: #2563eb;
-  --accent-foreground: #ffffff;
-  --destructive: #e11d48;
-  --destructive-foreground: #ffffff;
-  --border: oklch(0.25 0.04 170);
-  --input: oklch(0.22 0.04 170);
-  --ring: #12b886;
+  --primary: oklch(0.55 0.19 258);
+  --primary-foreground: oklch(1 0 0);
+  --brand-50: oklch(0.97 0.02 255);
+  --brand-100: oklch(0.93 0.05 255);
+  --brand-600: oklch(0.55 0.19 258);
+  --brand-700: oklch(0.46 0.18 260);
+
+  --secondary: oklch(0.96 0.012 250);
+  --secondary-foreground: oklch(0.3 0.03 255);
+  --muted: oklch(0.96 0.012 250);
+  --muted-foreground: oklch(0.55 0.02 255);
+
+  --accent: oklch(0.72 0.16 160);
+  --accent-foreground: oklch(0.22 0.06 160);
+  --mint: oklch(0.72 0.16 160);
+  --mint-soft: oklch(0.95 0.05 160);
+
+  --warning: oklch(0.78 0.15 75);
+  --destructive: oklch(0.6 0.2 20);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.91 0.012 250);
+  --input: oklch(0.91 0.012 250);
+  --ring: oklch(0.55 0.19 258);
 }
 
 @layer base {
@@ -113,17 +103,40 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans-family);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display-family);
+    letter-spacing: -0.02em;
   }
 }
 
-@utility glow-emerald {
-  animation: glow-emerald 6s ease-in-out infinite;
+@utility rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@keyframes glow-emerald {
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
   0%,
   100% {
-    opacity: 0.72;
+    opacity: 0.55;
   }
   50% {
     opacity: 1;
