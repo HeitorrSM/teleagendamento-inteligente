@@ -65,8 +65,8 @@ function AgendarPage() {
 
   function submit() {
     const e: Record<string, string> = {};
-    if (patient.trim().length < 3) e.patient = "Informe seu nome completo.";
-    if (phone.replace(/\D/g, "").length < 10) e.phone = "Informe um telefone válido com DDD.";
+    if (patient.trim().length < 3) e["patient"] = "Informe seu nome completo.";
+    if (phone.replace(/\D/g, "").length < 10) e["phone"] = "Informe um telefone válido com DDD.";
     setErrors(e);
     if (Object.keys(e).length) return;
     const appt = create({
@@ -299,7 +299,7 @@ function AgendarPage() {
             >
               <h2 className="text-lg font-bold">Seus dados</h2>
               <div className="mt-4 grid gap-4">
-                <Field label="Nome completo" error={errors.patient}>
+                <Field label="Nome completo" error={errors["patient"]}>
                   <input
                     value={patient}
                     onChange={(e) => setPatient(e.target.value)}
@@ -308,7 +308,7 @@ function AgendarPage() {
                     className="w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
                   />
                 </Field>
-                <Field label="Telefone (WhatsApp)" error={errors.phone}>
+                <Field label="Telefone (WhatsApp)" error={errors["phone"]}>
                   <input
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
@@ -372,7 +372,7 @@ function Field({
   children,
 }: {
   label: string;
-  error?: string;
+  error?: string | undefined;
   children: React.ReactNode;
 }) {
   return (
