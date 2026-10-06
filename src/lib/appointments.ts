@@ -43,8 +43,8 @@ export const TIME_SLOTS = [
   "17:00",
 ];
 
-const KEY = "telesaude:appointments";
-const NKEY = "telesaude:notifications";
+const KEY = "telesaude:appointments:v2";
+const NKEY = "telesaude:notifications:v2";
 
 function iso(offsetDays: number) {
   const d = new Date();
@@ -85,11 +85,12 @@ function load() {
   loaded = true;
   try {
     const raw = localStorage.getItem(KEY);
-    appointments = raw ? (JSON.parse(raw) as Appointment[]) : seed();
+    appointments = raw ? (JSON.parse(raw) as Appointment[]) : [];
+    void seed;
     const nraw = localStorage.getItem(NKEY);
     notifications = nraw ? (JSON.parse(nraw) as NotificationLog[]) : [];
   } catch {
-    appointments = seed();
+    appointments = [];
     notifications = [];
   }
   persist();
