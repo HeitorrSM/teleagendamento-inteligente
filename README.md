@@ -1,14 +1,32 @@
-# Welcome to your Lovable project
+# TeleAgendamento Inteligente
+
+A Central Inteligente de Teleagendamento
+
+TeleSaúde
+
+Nossa solução é uma plataforma digital que automatiza todo o processo de agendamento.
+
+Agendamento online
+
+Confirmação automática da consulta
+
+Lembretes via WhatsApp/SMS
+
+Cancelamento e reagendamento
+
+Painel para gestores
+
+Relatórios em tempo real
 
 This project was built with [Lovable](https://lovable.dev).
 
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/3aef437e-322b-4ace-9f0d-dc221bc6fd98).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +38,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
